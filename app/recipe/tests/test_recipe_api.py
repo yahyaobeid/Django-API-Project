@@ -36,7 +36,7 @@ def detail_url(recipe_id):
 
 def image_upload_url(recipe_id):
     """Create and return an image upload URL."""
-    return reverse('recipe:upload_image', args=[recipe_id])
+    return reverse('recipe:recipe-upload-image', args=[recipe_id])
 
 
 def create_recipe(user, **params):
@@ -380,7 +380,7 @@ class PrivateRecipeAPITests(TestCase):
         self.assertEqual(recipe.ingredients.count(), 0)
 
 
-class ImageUpload(TestCase):
+class ImageUploadTests(TestCase):
     """Tests for the image upload API."""
 
     def setUp(self):
@@ -413,7 +413,7 @@ class ImageUpload(TestCase):
     def test_upload_image_bad_request(self):
         """Test uploading invalid image."""
         url = image_upload_url(self.recipe.id)
-        payload = {'image': notanimage}
+        payload = {'image': 'notanimage'}
         res = self.client.post(url, payload, format='multipart')
 
         self.assertEqual(res.status_code, status.HTTP_400_BAD_REQUEST)
