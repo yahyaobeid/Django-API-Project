@@ -77,7 +77,7 @@ class PublicUserAPITests(TestCase):
 
         payload = {
             'email': user_details['email'],
-            'password': user_details['password']
+            'password': user_details['password'],
         }
         res = self.client.post(TOKEN_URL, payload)
 

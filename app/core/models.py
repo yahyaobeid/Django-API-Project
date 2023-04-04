@@ -7,7 +7,7 @@ from django.contrib.auth.models import (
     AbstractBaseUser,
     BaseUserManager,
     PermissionsMixin,
-    )
+)
 
 
 class UserManager(BaseUserManager):
@@ -24,11 +24,11 @@ class UserManager(BaseUserManager):
         return user
 
     def create_superuser(self, email, password):
-        """Create and return new superuser"""
+        """Create and return a new superuser."""
         user = self.create_user(email, password)
         user.is_staff = True
         user.is_superuser = True
-        user.save(using=self.db)
+        user.save(using=self._db)
 
         return user
 
@@ -46,7 +46,7 @@ class User(AbstractBaseUser, PermissionsMixin):
 
 
 class Recipe(models.Model):
-    """Recipe Object."""
+    """Recipe object."""
     user = models.ForeignKey(
         settings.AUTH_USER_MODEL,
         on_delete=models.CASCADE,
