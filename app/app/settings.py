@@ -29,7 +29,7 @@ ALLOWED_HOSTS = []
 ALLOWED_HOSTS.extend(
     filter(
         None,
-        os.environ.get('ALLOWED_HOSTS', '').split(',')
+        os.environ.get('ALLOWED_HOSTS', '').split(','),
     )
 )
 
@@ -150,5 +150,5 @@ REST_FRAMEWORK = {
 }
 
 SPECTACULAR_SETTINGS = {
-    'COMPONENT_SPLIT_REQUEST': True
+    'COMPONENT_SPLIT_REQUEST': True,
 }
